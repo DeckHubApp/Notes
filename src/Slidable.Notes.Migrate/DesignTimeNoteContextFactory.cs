@@ -1,12 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using ShtikLive.Notes.Data;
+using Slidable.Notes.Data;
 
-namespace ShtikLive.Notes.Migrate
+namespace Slidable.Notes.Migrate
 {
     public class DesignTimeNoteContextFactory : IDesignTimeDbContextFactory<NoteContext>
     {
-        public const string LocalPostgres = "Host=localhost;Database=notes;Username=shtik;Password=secretsquirrel";
+        public const string LocalPostgres = "Host=localhost;Database=notes;Username=slidable;Password=secretsquirrel";
 
         public static readonly string MigrationAssemblyName =
             typeof(DesignTimeNoteContextFactory).Assembly.GetName().Name;
@@ -14,7 +15,7 @@ namespace ShtikLive.Notes.Migrate
         public NoteContext CreateDbContext(string[] args)
         {
             var builder = new DbContextOptionsBuilder()
-                .UseNpgsql(LocalPostgres, b => b.MigrationsAssembly(MigrationAssemblyName));
+                .UseNpgsql(args.FirstOrDefault() ?? LocalPostgres, b => b.MigrationsAssembly(MigrationAssemblyName));
             return new NoteContext(builder.Options);
         }
     }

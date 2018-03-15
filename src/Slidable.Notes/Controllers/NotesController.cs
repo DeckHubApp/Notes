@@ -4,13 +4,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using ShtikLive.Notes.Data;
-using ShtikLive.Notes.Models;
+using Slidable.Notes.Data;
+using Slidable.Notes.Models;
 
-namespace ShtikLive.Notes.Controllers
+namespace Slidable.Notes.Controllers
 {
-    using static ResultMethods;
-
     public class NotesController
     {
         private readonly ILogger<NotesController> _logger;
@@ -32,7 +30,7 @@ namespace ShtikLive.Notes.Controllers
             .SingleOrDefaultAsync(n => n.UserHandle == user && n.SlideIdentifier == slideIdentifier, ct)
             .ConfigureAwait(false);
 
-            return existingNote == null ? NotFound() : Ok(NoteDto.FromNote(existingNote));
+            return existingNote == null ? ResultMethods.NotFound() : ResultMethods.Ok(NoteDto.FromNote(existingNote));
             }
             catch (Exception ex)
             {
@@ -61,7 +59,7 @@ namespace ShtikLive.Notes.Controllers
             existingNote.NoteText = note.Text;
             existingNote.Timestamp = DateTimeOffset.UtcNow;
             await _context.SaveChangesAsync(ct).ConfigureAwait(false);
-            return Accepted();
+            return ResultMethods.Accepted();
         }
     }
 }

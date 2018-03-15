@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ShtikLive.Notes.Data
+namespace Slidable.Notes.Data
 {
     public class Note
     {

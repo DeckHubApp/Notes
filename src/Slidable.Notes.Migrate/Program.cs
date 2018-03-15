@@ -1,31 +1,17 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using ShtikLive.Notes.Data;
+using RendleLabs.EntityFrameworkCore.MigrateHelper;
 
-namespace ShtikLive.Notes.Migrate
+namespace Slidable.Notes.Migrate
 {
-    class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            var connectionString = args.Length == 1
-                ? args[0]
-                : DesignTimeNoteContextFactory.LocalPostgres;
-
-            var options = new DbContextOptionsBuilder<NoteContext>()
-                .UseNpgsql(connectionString, b => b.MigrationsAssembly(DesignTimeNoteContextFactory.MigrationAssemblyName))
-                .Options;
-
-            var context = new NoteContext(options);
-
-            var loggerFactory = new LoggerFactory().AddConsole();
-
-            var migrationHelper = new MigrationHelper(loggerFactory);
-
-            Console.WriteLine("Trying migration...");
-            migrationHelper.TryMigrate(context).GetAwaiter().GetResult();
-            Console.WriteLine("Done.");
+            var loggerFactory = new LoggerFactory().AddConsole((_, level) => true);
+            await new MigrationHelper(loggerFactory).TryMigrate(args);
         }
     }
 }

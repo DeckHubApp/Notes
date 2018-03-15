@@ -1,7 +1,7 @@
 ﻿using System;
-using ShtikLive.Notes.Data;
+using Slidable.Notes.Data;
 
-namespace ShtikLive.Notes.Models
+namespace Slidable.Notes.Models
 {
     public class NoteDto
     {
