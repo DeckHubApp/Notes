@@ -1,0 +1,88 @@
+{
+  "vue": {
+    "version": "vue@2.5.16",
+    "files": [
+      {
+        "file": "/dist/vue.js",
+        "cdn": "https://unpkg.com/vue@2.5.16/dist/vue.js",
+        "local": "wwwroot/lib/vue/vue.js",
+        "integrity": "sha384-uDHwRgVGzCbHUyl2dKQHqgCAab0OIx/w9PqT3pvjaX/ZGARjKanO5mJGjmdixblb"
+      },
+      {
+        "file": "/dist/vue.min.js",
+        "cdn": "https://unpkg.com/vue@2.5.16/dist/vue.min.js",
+        "local": "wwwroot/lib/vue/vue.min.js",
+        "integrity": "sha384-DwsLA0O/He+RjlS7pFkqEHfsCgdTMU+nSuUq/qkxvKSTED+s4vRttKEZtf4xTW1+"
+      }
+    ]
+  },
+  "bootstrap": {
+    "version": "bootstrap@4.0.0",
+    "files": [
+      {
+        "file": "/dist/js/bootstrap.bundle.js",
+        "cdn": "https://unpkg.com/bootstrap@4.0.0/dist/js/bootstrap.bundle.js",
+        "local": "wwwroot/lib/bootstrap/js/bootstrap.bundle.js",
+        "integrity": "sha384-jsto7BKLxIckSZGIaMHhrgLyfPsKCpgz/n/8+LSM7Wu3jcOYL9aLBn42goF34TWC"
+      },
+      {
+        "file": "/dist/js/bootstrap.bundle.js.map",
+        "cdn": "https://unpkg.com/bootstrap@4.0.0/dist/js/bootstrap.bundle.js.map",
+        "local": "wwwroot/lib/bootstrap/js/bootstrap.bundle.js.map",
+        "integrity": "sha384-g9ztExxhvbat0r2sVl3YnTomPFdx0ikBVBjY1OtEBMo6N9ElPhEfyVq0rX901seU"
+      },
+      {
+        "file": "/dist/js/bootstrap.bundle.min.js",
+        "cdn": "https://unpkg.com/bootstrap@4.0.0/dist/js/bootstrap.bundle.min.js",
+        "local": "wwwroot/lib/bootstrap/js/bootstrap.bundle.min.js",
+        "integrity": "sha384-feJI7QwhOS+hwpX2zkaeJQjeiwlhOP+SdQDqhgvvo1DsjtiSQByFdThsxO669S2D"
+      },
+      {
+        "file": "/dist/js/bootstrap.bundle.min.js.map",
+        "cdn": "https://unpkg.com/bootstrap@4.0.0/dist/js/bootstrap.bundle.min.js.map",
+        "local": "wwwroot/lib/bootstrap/js/bootstrap.bundle.min.js.map",
+        "integrity": "sha384-cH2LWMiZFzgQvUzyTqMxSL03OqQ9k80dQkcpCdjLA9S1xHxIW0vcVUITrXTQN0SE"
+      }
+    ]
+  },
+  "jquery": {
+    "version": "jquery@3.3.1",
+    "files": [
+      {
+        "file": "/dist/jquery.slim.js",
+        "cdn": "https://unpkg.com/jquery@3.3.1/dist/jquery.slim.js",
+        "local": "wwwroot/lib/jquery/jquery.slim.js",
+        "integrity": "sha384-sh6iinGECmk2oNezd0GDVuXqoHrZzF3PTML2nyt/lC61v2p1W7hGll/JkRFCOcMf"
+      },
+      {
+        "file": "/dist/jquery.slim.min.js",
+        "cdn": "https://unpkg.com/jquery@3.3.1/dist/jquery.slim.min.js",
+        "local": "wwwroot/lib/jquery/jquery.slim.min.js",
+        "integrity": "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      },
+      {
+        "file": "/dist/jquery.slim.min.map",
+        "cdn": "https://unpkg.com/jquery@3.3.1/dist/jquery.slim.min.map",
+        "local": "wwwroot/lib/jquery/jquery.slim.min.map",
+        "integrity": "sha384-eXQhcgJpJKlQSB631xd1cBQ7sPkP5QW2DZTHQY+ChrTQVOzpgbbJ/8Fb6maccTIN"
+      }
+    ]
+  },
+  "bootswatch/darkly": {
+    "version": "bootswatch@4.0.0",
+    "files": [
+      {
+        "file": "/dist/darkly/bootstrap.css",
+        "cdn": "https://unpkg.com/bootswatch@4.0.0/dist/darkly/bootstrap.css",
+        "local": "wwwroot/lib/bootswatch/darkly/bootstrap.css",
+        "integrity": "sha384-MtDYCLkEI7u+9Bnye5jvJeQwVrOZQ2QFGEyyNY7gZg9cn7lU27HCFhlh3C41GW6o"
+      },
+      {
+        "file": "/dist/darkly/bootstrap.min.css",
+        "cdn": "https://unpkg.com/bootswatch@4.0.0/dist/darkly/bootstrap.min.css",
+        "local": "wwwroot/lib/bootswatch/darkly/bootstrap.min.css",
+        "integrity": "sha384-p8bH4RlA/kdF4wbAoep+/6VeOQI2IAWa9zLjTIQbQLv2FuCjX/W/FkdYdeKISDvK"
+      }
+    ]
+  }
+}

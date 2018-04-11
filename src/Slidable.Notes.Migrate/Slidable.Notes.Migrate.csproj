@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -11,7 +11,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.1.0-preview1-final" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.0-preview1" />
     <PackageReference Include="RendleLabs.EntityFrameworkCore.MigrateHelper" Version="2.1.0-preview1-141720" />
-    <PackageReference Include="Polly" Version="5.8.0" />
+    <PackageReference Include="Polly" Version="5.9.0" />
   </ItemGroup>
 
   <ItemGroup>

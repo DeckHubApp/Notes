@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -9,7 +11,9 @@ using Slidable.Notes.Models;
 
 namespace Slidable.Notes.Controllers
 {
-    public class NotesController
+    [Route("")]
+    [Authorize]
+    public class NotesController : Controller
     {
         private readonly ILogger<NotesController> _logger;
         private readonly NoteContext _context;
@@ -20,17 +24,21 @@ namespace Slidable.Notes.Controllers
             _logger = logger;
         }
 
-        [HttpGet("{user}/{presenter}/{slug}/{number}")]
-        public async Task<IActionResult> GetForSlide(string user, string presenter, string slug, int number, CancellationToken ct)
+        [HttpGet("{place}/{presenter}/{slug}/{number}")]
+        public async Task<ActionResult<NoteDto>> GetForSlide(string place, string presenter, string slug, int number,
+            CancellationToken ct)
         {
-            var slideIdentifier = $"{presenter}/{slug}/{number}";
+            var slideIdentifier = $"{place}/{presenter}/{slug}/{number}";
+            var user = User.FindFirstValue(SlidableClaimTypes.Handle);
             try
             {
                 var existingNote = await _context.Notes
-            .SingleOrDefaultAsync(n => n.UserHandle == user && n.SlideIdentifier == slideIdentifier, ct)
-            .ConfigureAwait(false);
+                    .SingleOrDefaultAsync(n => n.UserHandle == user && n.SlideIdentifier == slideIdentifier, ct)
+                    .ConfigureAwait(false);
 
-            return existingNote == null ? ResultMethods.NotFound() : ResultMethods.Ok(NoteDto.FromNote(existingNote));
+                if (existingNote == null) return NotFound();
+
+                return NoteDto.FromNote(existingNote);
             }
             catch (Exception ex)
             {
@@ -39,13 +47,17 @@ namespace Slidable.Notes.Controllers
             }
         }
 
-        [HttpPut("{user}/{presenter}/{slug}/{number}")]
-        public async Task<IActionResult> SetForSlide(string user, string presenter, string slug, int number, [FromBody] NoteDto note, CancellationToken ct)
+        [HttpPut("{place}/{presenter}/{slug}/{number}")]
+        public async Task<IActionResult> SetForSlide(string place, string presenter, string slug, int number,
+            [FromBody] NoteDto note, CancellationToken ct)
         {
-            var slideIdentifier = $"{presenter}/{slug}/{number}";
+            var slideIdentifier = $"{place}/{presenter}/{slug}/{number}";
+            var user = User.FindFirstValue(SlidableClaimTypes.Handle);
+
             var existingNote = await _context.Notes
                 .SingleOrDefaultAsync(n => n.UserHandle == user && n.SlideIdentifier == slideIdentifier, ct)
                 .ConfigureAwait(false);
+
             if (existingNote == null)
             {
                 existingNote = new Note
@@ -56,10 +68,11 @@ namespace Slidable.Notes.Controllers
                 };
                 _context.Notes.Add(existingNote);
             }
+
             existingNote.NoteText = note.Text;
             existingNote.Timestamp = DateTimeOffset.UtcNow;
             await _context.SaveChangesAsync(ct).ConfigureAwait(false);
-            return ResultMethods.Accepted();
+            return Accepted();
         }
     }
 }
