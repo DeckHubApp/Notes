@@ -4,26 +4,30 @@
     <meta charset="utf-8" />
     <title></title>
     <link href="lib/bootswatch/darkly/bootstrap.css" rel="stylesheet" />
+    <style>
+        body {
+            min-height: 100vh;
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="row">
-            <div class="md-6">
-                <div id="questions"></div>
+<div class="container h-100">
+        <div class="row h-50">
+            <div class="col-md-6 offset-md-3 h-100">
+                <div id="notes"></div>
             </div>
         </div>
     </div>
 
     <script src="lib/jquery/jquery.slim.js"></script>
-    <script src="lib/popper.js/umd/popper.js"></script>
-    <script src="lib/bootstrap/js/bootstrap.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="lib/vue/vue.js"></script>
     <script>
-    window.Slidable = { DEV_PATH: 'shows/live/thing2018/rendle/slidable/1' };
+    window.Slidable = { show: 'thing2018/rendle/slidable' };
     </script>
-    <script src="questions.js"></script>
+    <script src="notes.js"></script>
 
 </body>
 

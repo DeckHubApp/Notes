@@ -31,7 +31,8 @@
         const slug = path.pop();
         const presenter = path.pop();
         const place = path.pop();
-        return `${urlPrefix}/${place}/${presenter}/${slug}/${slideNumber}`;
+        const show = Slidable.show || `${place}/${presenter}/${slug}`;
+        return `${urlPrefix}/${show}/${slideNumber}`;
     }
 
     function load() {
@@ -46,21 +47,27 @@
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Content-Length', json.length.toString());
-        return fetch(notesUrl(), { method: 'POST', credentials: 'same-origin', body: json, headers: headers })
+        return fetch(notesUrl(), { method: 'PUT', credentials: 'same-origin', body: json, headers: headers })
             .then(checkStatus);
     }
 
     const notesFormComponent = {
         template: `
-<form id="notes-form" v-on:submit="submit">
-    <div class="form-group">
-      <textarea id="notesText" v-model="text" class="form-control">
-      <button class="btn btn-secondary" type="submit" :disabled="button.disabled">{{button.text}}</button>
+<form id="notes-form" v-on:submit="submit" class="h-100">
+    <div class="card h-100">
+        <div class="card-header text-center">Notes</div>
+        <div class="card-body h-100">
+            <textarea class="h-100 form-control p-1" v-model="text" id="note-text"></textarea>
+        </div>
+        <div class="card-footer text-center">
+            <button type="submit" class="btn btn-outline-success mx-auto" :disabled="button.disabled">{{button.text}}</button>
+        </div>
     </div>
 </form>`,
         created() {
             load()
                 .then(notes => {
+                    this.skipSave = true;
                     this.text = notes.text;
                 });
         },
@@ -69,15 +76,27 @@
             button: {
                 text: 'Save',
                 disabled: false
-            }
-        }),
-        methods: {
-            reset: function reset() {
-                this.button.text = 'Save';
-                this.button.disabled = false;
             },
-            submit: function submit(event) {
-                event.preventDefault();
+            saveTimeout: false,
+            doNotSave: false
+        }),
+        watch: {
+            text: function watchText(n, o) {
+                if (this.skipSave) {
+                    this.skipSave = false;
+                    return;
+                }
+                if (n !== o) {
+                    if (this.saveTimeout) {
+                        clearTimeout(this.saveTimeout);
+                    }
+                    this.saveTimeout = setTimeout(this.save, 250);
+                }
+            }
+        },
+        methods: {
+            save: function save() {
+                if (this.doNotSave) return;
                 this.button.text = 'Saving...';
                 this.button.disabled = true;
                 saveNotes(this.text)
@@ -88,8 +107,24 @@
                         console.error(r);
                         this.reset();
                     });
+            },
+            reset: function reset() {
+                this.button.text = 'Save';
+                this.button.disabled = false;
+            },
+            submit: function submit(event) {
+                event.preventDefault();
+                this.save();
             }
         }
     };
 
-})(window.Slidable || {}, document.currentScript);
+    const vm = new Vue({
+        el: '#notes',
+        components: {
+            'notes-form': notesFormComponent
+        },
+        template: `<notes-form></notes-form>`
+    });
+
+})(window.Slidable || (window.Slidable = {}), document.currentScript);
