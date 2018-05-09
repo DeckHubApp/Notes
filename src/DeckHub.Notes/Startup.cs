@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Slidable.Notes.Data;
+using DeckHub.Notes.Data;
 using StackExchange.Redis;
 
-namespace Slidable.Notes
+namespace DeckHub.Notes
 {
     [UsedImplicitly]
     public class Startup
@@ -47,7 +47,7 @@ namespace Slidable.Notes
 
             if (!_env.IsDevelopment())
             {
-                var dpBuilder = services.AddDataProtection().SetApplicationName("slidable");
+                var dpBuilder = services.AddDataProtection().SetApplicationName("deckhub");
 
                 if (_connectionMultiplexer != null)
                 {
@@ -58,7 +58,7 @@ namespace Slidable.Notes
             {
                 services.AddDataProtection()
                     .DisableAutomaticKeyGeneration()
-                    .SetApplicationName("slidable");
+                    .SetApplicationName("deckhub");
             }
 
 

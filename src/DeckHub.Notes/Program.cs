@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Slidable.Notes
+namespace DeckHub.Notes
 {
     public class Program
     {

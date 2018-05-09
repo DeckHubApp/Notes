@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 
-namespace Slidable.Notes
+namespace DeckHub.Notes
 {
     [PublicAPI]
     public class BypassAuthMiddleware
@@ -22,7 +22,7 @@ namespace Slidable.Notes
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, "mark@rendle.io"),
-                new Claim(SlidableClaimTypes.Handle, "rendle")
+                new Claim(DeckHubClaimTypes.Handle, "rendle")
             };
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             context.User = new ClaimsPrincipal(identity);

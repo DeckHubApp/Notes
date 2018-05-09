@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slidable.Notes", "src\Slidable.Notes\Slidable.Notes.csproj", "{D945D31C-4222-4CF0-B75A-D9B35ECDEC5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeckHub.Notes", "src\DeckHub.Notes\DeckHub.Notes.csproj", "{D945D31C-4222-4CF0-B75A-D9B35ECDEC5B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D52F014E-1EF5-4057-85DD-19CC0B441434}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slidable.Notes.Data", "src\Slidable.Notes.Data\Slidable.Notes.Data.csproj", "{EF1DCA65-BDCE-463E-9546-9164789ACBD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeckHub.Notes.Data", "src\DeckHub.Notes.Data\DeckHub.Notes.Data.csproj", "{EF1DCA65-BDCE-463E-9546-9164789ACBD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slidable.Notes.Migrate", "src\Slidable.Notes.Migrate\Slidable.Notes.Migrate.csproj", "{FE260418-A513-4A29-9A87-35F85669DB2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeckHub.Notes.Migrate", "src\DeckHub.Notes.Migrate\DeckHub.Notes.Migrate.csproj", "{FE260418-A513-4A29-9A87-35F85669DB2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

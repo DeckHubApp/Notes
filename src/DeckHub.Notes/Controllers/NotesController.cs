@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Slidable.Notes.Data;
-using Slidable.Notes.Models;
+using DeckHub.Notes.Data;
+using DeckHub.Notes.Models;
 
-namespace Slidable.Notes.Controllers
+namespace DeckHub.Notes.Controllers
 {
     [Route("")]
     [Authorize]
@@ -29,7 +29,7 @@ namespace Slidable.Notes.Controllers
             CancellationToken ct)
         {
             var slideIdentifier = $"{place}/{presenter}/{slug}/{number}";
-            var user = User.FindFirstValue(SlidableClaimTypes.Handle);
+            var user = User.FindFirstValue(DeckHubClaimTypes.Handle);
             try
             {
                 var existingNote = await _context.Notes
@@ -52,7 +52,7 @@ namespace Slidable.Notes.Controllers
             [FromBody] NoteDto note, CancellationToken ct)
         {
             var slideIdentifier = $"{place}/{presenter}/{slug}/{number}";
-            var user = User.FindFirstValue(SlidableClaimTypes.Handle);
+            var user = User.FindFirstValue(DeckHubClaimTypes.Handle);
 
             var existingNote = await _context.Notes
                 .SingleOrDefaultAsync(n => n.UserHandle == user && n.SlideIdentifier == slideIdentifier, ct)

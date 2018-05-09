@@ -1,4 +1,4 @@
-﻿(function(Slidable, currentScript) {
+﻿(function(DeckHub, currentScript) {
 
     function _urlPrefix(src) {
         var url = new URL(src, document.location.href);
@@ -22,7 +22,7 @@
     }
 
     function pagePath() {
-        return Slidable.DEV_PATH || window.location.pathname;
+        return DeckHub.DEV_PATH || window.location.pathname;
     }
 
     function notesUrl() {
@@ -31,7 +31,7 @@
         const slug = path.pop();
         const presenter = path.pop();
         const place = path.pop();
-        const show = Slidable.show || `${place}/${presenter}/${slug}`;
+        const show = DeckHub.show || `${place}/${presenter}/${slug}`;
         return `${urlPrefix}/${show}/${slideNumber}`;
     }
 
@@ -127,4 +127,4 @@
         template: `<notes-form></notes-form>`
     });
 
-})(window.Slidable || (window.Slidable = {}), document.currentScript);
+})(window.DeckHub || (window.DeckHub = {}), document.currentScript);

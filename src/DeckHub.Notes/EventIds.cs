@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Slidable.Notes
+namespace DeckHub.Notes
 {
     public static class EventIds
     {

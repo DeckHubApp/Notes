@@ -2,7 +2,7 @@
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 
-namespace Slidable.Notes.Data
+namespace DeckHub.Notes.Data
 {
     public class NoteContext : DbContext
     {

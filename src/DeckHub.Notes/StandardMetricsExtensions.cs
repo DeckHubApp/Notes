@@ -3,7 +3,7 @@ using App.Metrics;
 using App.Metrics.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Slidable.Notes
+namespace DeckHub.Notes
 {
     public static class StandardMetricsExtensions
     {

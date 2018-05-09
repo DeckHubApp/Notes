@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Slidable.Notes.Migrate.Migrations
+namespace DeckHub.Notes.Migrate.Migrations
 {
     public partial class InitialCreate : Migration
     {
@@ -19,7 +18,7 @@ namespace Slidable.Notes.Migrate.Migrations
                     UserHandle = table.Column<string>(maxLength: 16, nullable: true),
                     NoteText = table.Column<string>(nullable: true),
                     Public = table.Column<bool>(nullable: false),
-                    Timestamp = table.Column<string>(nullable: false)
+                    Timestamp = table.Column<DateTimeOffset>(nullable: false)
                 },
                 constraints: table =>
                 {

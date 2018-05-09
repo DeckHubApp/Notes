@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Slidable.Notes.Data
+namespace DeckHub.Notes.Data
 {
     public class Note
     {

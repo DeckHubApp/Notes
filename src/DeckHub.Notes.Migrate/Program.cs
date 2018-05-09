@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using RendleLabs.EntityFrameworkCore.MigrateHelper;
 
-namespace Slidable.Notes.Migrate
+namespace DeckHub.Notes.Migrate
 {
     public static class Program
     {

@@ -1,7 +1,7 @@
 ﻿using System;
-using Slidable.Notes.Data;
+using DeckHub.Notes.Data;
 
-namespace Slidable.Notes.Models
+namespace DeckHub.Notes.Models
 {
     public class NoteDto
     {

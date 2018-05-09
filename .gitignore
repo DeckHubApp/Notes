@@ -28,7 +28,7 @@ bld/
 .vs/
 
 # Libs are managed by dotnet-unpkg
-src/Slidable.Notes/wwwroot/lib/
+src/DeckHub.Notes/wwwroot/lib/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
