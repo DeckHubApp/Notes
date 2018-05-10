@@ -53,7 +53,8 @@
 
     const notesFormComponent = {
         template: `
-<form id="notes-form" v-on:submit="submit" class="h-100">
+<div>
+<form id="notes-form" v-on:submit="submit" class="h-100" v-if="userIsAuthenticated">
     <div class="card h-100">
         <div class="card-header text-center">Notes</div>
         <div class="card-body h-100">
@@ -63,15 +64,21 @@
             <button type="submit" class="btn btn-outline-success mx-auto" :disabled="button.disabled">{{button.text}}</button>
         </div>
     </div>
-</form>`,
+</form>
+<div v-else>
+Please log in to take notes.
+</div>
+</div>`,
         created() {
             load()
                 .then(notes => {
                     this.skipSave = true;
                     this.text = notes.text;
+                    this.userIsAuthenticated = notes.userIsAuthenticated;
                 });
         },
         data: () => ({
+            userIsAuthenticated: false,
             text: '',
             button: {
                 text: 'Save',

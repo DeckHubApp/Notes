@@ -12,7 +12,6 @@ using DeckHub.Notes.Models;
 namespace DeckHub.Notes.Controllers
 {
     [Route("")]
-    [Authorize]
     public class NotesController : Controller
     {
         private readonly ILogger<NotesController> _logger;
@@ -28,6 +27,10 @@ namespace DeckHub.Notes.Controllers
         public async Task<ActionResult<NoteDto>> GetForSlide(string place, string presenter, string slug, int number,
             CancellationToken ct)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return new NoteDto();
+            }
             var slideIdentifier = $"{place}/{presenter}/{slug}/{number}";
             var user = User.FindFirstValue(DeckHubClaimTypes.Handle);
             try
@@ -36,9 +39,17 @@ namespace DeckHub.Notes.Controllers
                     .SingleOrDefaultAsync(n => n.UserHandle == user && n.SlideIdentifier == slideIdentifier, ct)
                     .ConfigureAwait(false);
 
-                if (existingNote == null) return NotFound();
+                if (existingNote == null)
+                {
+                    return new NoteDto
+                    {
+                        UserIsAuthenticated = true
+                    };
+                }
 
-                return NoteDto.FromNote(existingNote);
+                var dto = NoteDto.FromNote(existingNote);
+                dto.UserIsAuthenticated = true;
+                return dto;
             }
             catch (Exception ex)
             {
@@ -47,6 +58,7 @@ namespace DeckHub.Notes.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("{place}/{presenter}/{slug}/{number}")]
         public async Task<IActionResult> SetForSlide(string place, string presenter, string slug, int number,
             [FromBody] NoteDto note, CancellationToken ct)

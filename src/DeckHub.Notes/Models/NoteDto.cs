@@ -5,6 +5,7 @@ namespace DeckHub.Notes.Models
 {
     public class NoteDto
     {
+        public bool UserIsAuthenticated { get; set; }
         public string Text { get; set; }
         public DateTimeOffset Timestamp { get; set; }
 
